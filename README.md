@@ -236,8 +236,19 @@ All questions have been taken from my personal experience.
     - With synchronization block
 
 
+- **Java Garbage Collectors**
 
+  GC works in two simple steps known as Mark and Sweep:
+    
+    - *Mark* – where the GC identifies which pieces of memory(objects) are in use and which are not
+    - *Sweep* - removes objects identified during the “mark” phase
 
+  Types of GC:
+
+    - *Parallel GC* - default. Uses multiple threads for managing heap space
+    - *G1* - partitions the heap into a set of equal-sized heap regions. It collects in these areas first, which usually yields a significant amount of free space
+    - *ZGC* - from Java11. Performs all expensive work concurrently, without stopping the execution of application threads for more than 10 ms, suitable for low-latency
+    
 
 
 ## Spring
