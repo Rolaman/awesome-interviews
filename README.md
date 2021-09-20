@@ -179,6 +179,66 @@ All questions have been taken from my personal experience.
 
 ## Java
 
+- **What is JMM**
+
+  The Java memory model specifies how the Java virtual machine works with the computer's memory.
+  there exist separate memory spaces *(Heap, Non-Heap, Cache)* in order to store runtime data and compiled code.
+
+
+- **Heap memory**
+
+  Heap is divided into 2 parts — Young Generation and Old Generation
+
+  - *Young Generation*
+
+      This is reserved for containing newly-allocated objects.
+      Young Gen includes three parts — Eden Memory and two Survivor Memory spaces (S0, S1).
+      When Eden space is filled with objects, GC is performed and survivors are moved to the survivor spaces.
+      GC also checks the survivor objects and move them to the other survivor space(one of the survivor space is always empty).
+      Objects that are survived after many cycles of GC, are moved to the Old generation memory space.
+
+  - *Old Generation*
+
+    This is reserved for containing long-lived objects that could survive after many rounds of GC.
+    When Old Gen space is full, GC is performed
+
+
+- **Non-Heap Memory**
+
+  This includes Permanent Generation.
+  PermGen stores per-class structures such as *runtime constant pool, field and method data, and the code for methods and constructors, as well as interned Strings*.
+  Also includes *Stack memory*.
+
+  Java Stack memory is used for execution of a thread and it contains method specific values and references to other objects in Heap
+
+
+- **Visibility of Shared Objects (volatile)**
+
+  If two or more threads are sharing an object, without the proper use of either volatile declarations or synchronization, updates to the shared object made by one thread may not be visible to other threads.
+
+
+- **Race Conditions**
+
+  If two or more threads share an object, and more than one thread updates variables in that shared object,
+  they can get unexpected result because of non-atomic operations.
+  To solve this problem you can use a *Java synchronized block*.
+  A synchronized block guarantees that only one thread can enter a given critical section of the code at any given time.
+
+
+- **JMM Happens Before**
+
+  Two actions can be ordered by a happens-before relationship.
+  If one action happens-before another, then the first is visible to and ordered before the second.
+  Examples of Happens before:
+  
+    - Actions in the same thread
+    - After constructor
+    - With synchronization block
+
+
+
+
+
 
 ## Spring
 
